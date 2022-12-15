@@ -8,103 +8,326 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="youtube.css">
 </head>
 <body>
     <div id="root"></div>
     <script type="text/babel">
 
-        const HeaderComponent=()=>{
-                
+        const HeaderComponent=(props)=>{ 
+            
+                const data=[
+                    {   "headmenuImg_id":"0",
+                        "img":"youtubeImg/menu.png",
+                    },
+                    {   "headmenuImg_id":"1",
+                        "img":"youtubeImg/youtubeLogo.png",
+                    },
+                    {   "headmenuImg_id":"2",
+                        "img":"youtubeImg/search.png",
+                    },
+                    {   "headmenuImg_id":"3",
+                        "img":"youtubeImg/mic.png",
+                    },
+                    {   "headmenuImg_id":"4",
+                        "img":"youtubeImg/profileSectionBtnIcon0.png",
+                    },
+                    {   "headmenuImg_id":"5",
+                        "img":"youtubeImg/profileSectionBtnIcon1.png",
+                    },
+                    {   "headmenuImg_id":"6",
+                        "img":"youtubeImg/profileSectionBtnIcon2.png",
+                    }
+                ]
+
                 return (
-                    <MemberListComponent/>
+                    <React.Fragment>
+                        <header>
+                            <section id="start" class="headMenuSection">
+                                <label for="sideMenuOpen" class="headMenuBtnClass">
+                                    <img src={data[0].img} class="headMenuBtnImgClass"/>
+                                </label>
+                                <img src={data[1].img} class="mainLogo"/>
+                            </section>
+
+                            <section id="center">
+                                <div id="searchContainer">
+                                    <input type="text" placeholder="검색" id="searchInput"/>
+                                    
+                                    <button id="searchBtn">
+                                        <img src={data[2].img} id="searchBtnImg" class="headMenuBtnImgClass"/>
+                                    </button>
+                                </div>
+                                <HeaderMenuBtnComponent data={data[3]}/>
+                            </section>
+                        
+                            <section id="end" class="headMenuSection" onclick="headmenu_btn_event(event)">
+                                <HeaderMenuBtnComponent data={data[4]}/>
+                                <HeaderMenuBtnComponent data={data[5]}/>
+                                <HeaderMenuBtnComponent data={data[6]}/>
+                            </section>
+                        </header>
+                    </React.Fragment>
                 )
+            }
+
+        const HeaderMenuBtnComponent=(props)=>{   
+            return (
+                <React.Fragment>
+                    <button class="headMenuBtnClass">
+                        <img src={props.data.img}  class="headMenuBtnImgClass"/>
+                    </button>
+                </React.Fragment>
+            )
         }
 
         const NavCloseComponent=(props)=>{
             
-            const data=[
-                {   "img":"홍길동",
-                    "txt":"22",
-                },
-                {   "img":"홍길동",
-                    "txt":"22",
-                },
-                {   "img":"홍길동",
-                    "txt":"22",
-                },
-                {   "img":"홍길동",
-                    "txt":"22",
-                }
-            ]
+                const data=[
+                    {   "sidemenu_id":"0",
+                        "img":"youtubeImg/sideMenuIcon0.png",
+                        "txt":"홈",
+                    },
+                    {   "sidemenu_id":"1",
+                        "img":"youtubeImg/sideMenuIcon1.png",
+                        "txt":"shorts",
+                    },
+                    {   "sidemenu_id":"2",
+                        "img":"youtubeImg/sideMenuIcon2.png",
+                        "txt":"구독",
+                    },
+                    {   "sidemenu_id":"3",
+                        "img":"youtubeImg/sideMenuIcon3.png",
+                        "txt":"보관함",
+                    }
+                ]
 
-            return (
-                <React.Fragment>
-                    <NavCloseBtnComponent/>
-                    <NavCloseBtnComponent/>
-                    <NavCloseBtnComponent/>
-                    <NavCloseBtnComponent/>
-                </React.Fragment>
-            )
-        }
+                return (
+                    <nav id="sideMenu" onclick="sidemenu_btn_event(event)">
+                        {
+                            data.map((value)=>{
+                            return <NavCloseBtnComponent data={value}/>
+                            })
+                        }  
+                    </nav>
+                )
+            }
 
         const NavCloseBtnComponent=(props)=>{
-            
 
-            return (
-                <MemberListComponent/>
-            )
-        }
+                return (
+                    <button id={"sideMenuBtn"+props.data.sidemenu_id} class="sideMenuBtnClass">
+                        <img class="sideMenuBtnImg" src={props.data.img}/>
+                        <p class="sideMenuBtnTxt">{props.data.txt}</p>
+                    </button>
+                )
+            }
 
         const NavOpenComponent=(props)=>{
 
-            const data=[
-                {   "img":"홍길동",
-                    "txt":"22",
-                },
-                {   "img":"홍길동",
-                    "txt":"22",
-                },
-                {   "img":"홍길동",
-                    "txt":"22",
-                },
-                {   "img":"홍길동",
-                    "txt":"22",
-                }
-            ]
+                const data=[
+                    {   "sidemenu_id":"0",
+                        "img":"youtubeImg/sideMenuIcon0.png",
+                        "txt":"홈",
+                    },
+                    {   "sidemenu_id":"1",
+                        "img":"youtubeImg/sideMenuIcon1.png",
+                        "txt":"shorts",
+                    },
+                    {   "sidemenu_id":"2",
+                        "img":"youtubeImg/sideMenuIcon2.png",
+                        "txt":"구독",
+                    },
+                    {   "sidemenu_id":"3",
+                        "img":"youtubeImg/sideMenuIcon3.png",
+                        "txt":"보관함",
+                    }
+                ]
 
-            return (
-                <React.Fragment>
-                    <NavOpenBtnComponent/>
-                    <NavOpenBtnComponent/>
-                    <NavOpenBtnComponent/>
-                    <NavOpenBtnComponent/>
-                </React.Fragment>
-            )
-        }
+                return (
+                    <React.Fragment>
+                    <input id="sideMenuOpen" type="checkbox"/>
+                    <nav id="openSideMenu" onclick="sidemenu_btn_event(event)">
+                        <section class="headMenuSection">
+                            <label for="sideMenuOpen" class="headMenuBtnClass">
+                                <img src="youtubeImg/menu.png" class="headMenuBtnImgClass"/>
+                            </label>
+                            <img src="youtubeImg/youtubeLogo.png" class="mainLogo"/>
+                        </section>
+                        {
+                            data.map((value)=>{
+                            return <NavOpenBtnComponent data={value}/>
+                            })
+                        }  
+                    </nav>
+                    </React.Fragment>
+                )
+            }
 
         const NavOpenBtnComponent=(props)=>{
 
 
             return (
-                <MemberListComponent/>
-            )
-        }
+                <button id={"openSideMenuBtn"+props.data.sidemenu_id} class="openSideMenuBtnClass">
+                        <img class="openSideMenuBtnImg" src={props.data.img}/>
+                        <p class="openSideMenuBtnTxt">{props.data.txt}</p>
+                </button>
+                )
+            }
 
-        const MainComponent=()=>{
-                
-            return (
-                <MemberListComponent/>
-            )
-        }
-    
-    
-        const App=()=>{
+        const MainContentInfoComponent=(props)=>{
             
             return (
-                <MemberListComponent/>
+                <React.Fragment>
+                        <img class="contentImg" src={props.data.contentThumbnail}/>
+                        <img class="contentInformationProfileImg" src={props.data.profileImg}/>
+                        <p class="contentTitle">{props.data.contentTitle}</p>
+                </React.Fragment>
             )
         }
 
+        const MainContentDetailInfoComponent=(props)=>{
+            
+                return (
+                    <div id={"contentInformationDetail"+props.data.id} class="contentInformationDetailClass">
+                        <p>{props.data.channelTitle}</p>
+                        <p>{props.data.contentView}</p>
+                        <p>{props.data.contentUploadDate}</p>
+                    </div>
+                )
+            }
+
+        const MainContentComponent=(props)=>{
+            
+                return (
+                    <section id={"content"+props.data.content_id} class="contentClass">
+                        <MainContentInfoComponent data={props.data}/>
+                        <MainContentDetailInfoComponent data={props.data}/>
+                    </section>
+                )
+            }
+
+        const MainComponent=(props)=>{
+                const data=[
+                        {   "content_id":"0",
+                            "contentThumbnail":"youtubeImg/contentImg0.png",
+                            "profileImg":"youtubeImg/contentProfileImg0.png",
+                            "contentTitle":"발드컵 Grand Final l LOUD(BR) vs OpTic Gaming(NA)",
+                            "channelTitle":"우왁굳의 게임방송",
+                            "contentView":"조회수 40만회",
+                            "contentUploadDate":"1년전"
+                        },
+                        {   "content_id":"1",
+                            "contentThumbnail":"youtubeImg/contentImg1.png",
+                            "profileImg":"youtubeImg/contentProfileImg1.png",
+                            "contentTitle":"고백으로 혼내주기 -여자편-",
+                            "channelTitle":"우왁굳의 계륵",
+                            "contentView":"조회수 10만회",
+                            "contentUploadDate":"2년전"
+                        },
+                        {   "content_id":"2",
+                            "contentThumbnail":"youtubeImg/contentImg2.png",
+                            "profileImg":"youtubeImg/contentProfileImg2.png",
+                            "contentTitle":"공부할 때 듣기 좋은 메이플스토리 명곡 BGM 22선 피아노 모음",
+                            "channelTitle":"pair piano",
+                            "contentView":"조회수 1천회",
+                            "contentUploadDate":"3년전"
+                        },
+                        {   "content_id":"3",
+                            "contentThumbnail":"youtubeImg/contentImg3.png",
+                            "profileImg":"youtubeImg/contentProfileImg3.png",
+                            "contentTitle":"𝐏𝐥𝐚𝐲𝐥𝐢𝐬𝐭 | 집중할 때 듣는 가사없는 애니ost 피아노",
+                            "channelTitle":"우왁굳의 돚거",
+                            "contentView":"조회수 5만회",
+                            "contentUploadDate":"1년전"
+                        },
+                        {   "content_id":"4",
+                            "contentThumbnail":"youtubeImg/contentImg4.png",
+                            "profileImg":"youtubeImg/contentProfileImg4.png",
+                            "contentTitle":"석가모니 인생 조언 - 현명한 사람은 알지만 어리석은 사람은 모르는 것",
+                            "channelTitle":"책게바라",
+                            "contentView":"조회수 43회",
+                            "contentUploadDate":"3년전"
+                        },
+                        {   "content_id":"5",
+                            "contentThumbnail":"youtubeImg/contentImg5.png",
+                            "profileImg":"youtubeImg/contentProfileImg5.png",
+                            "contentTitle":"침하하 구경하기",
+                            "channelTitle":"주호민",
+                            "contentView":"조회수 10만회",
+                            "contentUploadDate":"2일전"
+                        },
+                        {   "content_id":"6",
+                            "contentThumbnail":"youtubeImg/contentImg6.png",
+                            "profileImg":"youtubeImg/contentProfileImg6.png",
+                            "contentTitle":"고멤의 대답이 포커패가 된다 - 이심전심포커 풀버전",
+                            "channelTitle":"침착맨",
+                            "contentView":"조회수 40만회",
+                            "contentUploadDate":"1년전"
+                        },
+                        {   "content_id":"7",
+                            "contentThumbnail":"youtubeImg/contentImg7.png",
+                            "profileImg":"youtubeImg/contentProfileImg7.png",
+                            "contentTitle":"앞굽뒤찌 - 마인크래프트 SOS 합방",
+                            "channelTitle":"징버거",
+                            "contentView":"조회수 20만회",
+                            "contentUploadDate":"1년전"
+                        },
+                        {   "content_id":"8",
+                            "contentThumbnail":"youtubeImg/contentImg8.png",
+                            "profileImg":"youtubeImg/contentProfileImg8.png",
+                            "contentTitle":"[무한 레전드] 무한도전 추격전 레전드 하이라이트",
+                            "channelTitle":"우왁굳",
+                            "contentView":"조회수 420만회",
+                            "contentUploadDate":"1년전"
+                        },
+                        {   "content_id":"9",
+                            "contentThumbnail":"youtubeImg/contentImg9.png",
+                            "profileImg":"youtubeImg/contentProfileImg9.png",
+                            "contentTitle":"1호선 열차 한강대교에 2시간 멈춰 서...500여 명 고립됐다 구조 / YTN",
+                            "channelTitle":"게임방송",
+                            "contentView":"조회수 1230만회",
+                            "contentUploadDate":"3년전"
+                        },
+                        {   "content_id":"10",
+                            "contentThumbnail":"youtubeImg/contentImg10.png",
+                            "profileImg":"youtubeImg/contentProfileImg10.png",
+                            "contentTitle":"무한도전",
+                            "channelTitle":"무한도전tv",
+                            "contentView":"조회수 10만회",
+                            "contentUploadDate":"14년전"
+                        }
+            
+                    ]
+
+                return (
+                    <React.Fragment>
+                    <div class="overlay">
+                    </div>
+                    <main>
+                        <div id="contents" onclick="content_event(event)">
+                            {
+                                data.map((value)=>{
+                                return <MainContentComponent data={value}/>
+                                })
+                            } 
+                        </div>
+                    </main>
+                    </React.Fragment>
+                )
+            }
+    
+        const App=()=>{
+
+            return (
+                <React.Fragment>
+                    <HeaderComponent/>
+                    <NavCloseComponent/>
+                    <NavOpenComponent/>
+                    <MainComponent/>
+                </React.Fragment>
+            )
+            }
 
         window.onload=()=>{
             ReactDOM.createRoot(document.getElementById("root")).render(<App/>)
