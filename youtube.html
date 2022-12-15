@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>youtube</title>
+    <link rel="stylesheet" type="text/css" href="youtube.css">
+</head>
+<body>
+    <header>
+        <section id="start" class="headMenuSection">
+            <label for="sideMenuOpen" class="headMenuBtnClass">
+                <img src="youtubeImg/menu.png" class="headMenuBtnImgClass">
+            </label>
+            <img src="youtubeImg/youtubeLogo.png" class="mainLogo">
+        </section>
+
+        <section id="center">
+            <div id="searchContainer">
+                <input type="text" placeholder="검색" id="searchInput">
+                
+                <button id="searchBtn">
+                    <img src="youtubeImg/search.png" id="searchBtnImg" class="headMenuBtnImgClass">
+                </button>
+            </div>
+            <button id="micBtn" class="headMenuBtnClass">
+                <img src="youtubeImg/mic.png" class="headMenuBtnImgClass">
+            </button>
+        </section>
+    
+        <section id="end" class="headMenuSection" onclick="headmenu_btn_event(event)">
+        </section>
+    </header>
+    
+
+    <nav id="sideMenu" onclick="sidemenu_btn_event(event)">
+    </nav>
+
+    <input id="sideMenuOpen" type="checkbox">
+
+    <nav id="openSideMenu" onclick="sidemenu_btn_event(event)">
+        <section class="headMenuSection">
+            <label for="sideMenuOpen" class="headMenuBtnClass">
+                <img src="youtubeImg/menu.png" class="headMenuBtnImgClass">
+            </label>
+            <img src="youtubeImg/youtubeLogo.png" class="mainLogo">
+        </section>
+    </nav>
+
+    <div class="overlay">
+    </div>
+    
+    <main>
+        <div id="contents" onclick="content_event(event)">
+
+        </div>
+    </main>
+
+    <script src="youtube.js"></script>
+</body>
+</html>

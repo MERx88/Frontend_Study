@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const name="스테지어스"
+
+        // const clickEvent=(e)=>{
+        //     console.log(e.target.value)
+        // }
+
+        // const NameComponent=(props)=>{
+
+        //     // const nameValue=props.nameValue
+        //     const{nameValue}=props
+
+        //     return (
+        //         <div>
+        //             <h1>{nameValue}</h1>
+        //             <input type="button" value={nameValue} onClick={clickEvent}/>
+        //         </div>
+        //     ) 
+        // }
+        // const App=()=>{
+            
+        //     // const tmpInput=React.createElement("input",{
+        //     //     "type":"button",
+        //     //     "value":"버튼"
+        //     // })
+
+        //     // return tmpInput
+
+        //     const data=["ㄴㄴㄴ","ㅇㅇㅇ","ㅁㅁㅁ"]
+            
+
+        //     return (
+        //         <React.Fragment>
+        //           {
+        //             data.map((value)=>{
+        //                return <NameComponent nameValue={value}/>
+        //             })
+        //           }  
+        //         </React.Fragment>
+        //     )
+        // }
+
+        const MemberComponent=(props)=>{
+            return(
+                <React.Fragment>
+                    <h1>{props.data.이름}</h1>
+                    <h1>{props.data.나이}</h1>
+                    <h1>{props.data.주소}</h1>
+                </React.Fragment>
+            )
+
+        }
+
+        const MemberListComponent=(props)=>{
+            const data=[
+                {   "이름":"홍길동",
+                    "나이":"22",
+                    "주소":"뉴욕"
+                },
+                {   "이름":"너어",
+                    "나이":"33",
+                    "주소":"한국"
+                },
+                {   "이름":"ㄴㅇㄴㅇ",
+                    "나이":"23",
+                    "주소":"ㅇㅇㅇㅇ"
+                },
+
+            ]
+
+            return (
+                <React.Fragment>
+                    <MemberComponent data={data[0]}/>
+                    <MemberComponent data={data[1]}/>
+                    <MemberComponent data={data[2]}/>
+                </React.Fragment>
+            )
+        }
+
+        const App=()=>{
+            
+            return (
+                <MemberListComponent/>
+            )
+        }
+
+        window.onload=()=>{
+            ReactDOM.createRoot(document.getElementById("root")).render(<App/>)
+        }
+    </script>
+</body>
+</html>
